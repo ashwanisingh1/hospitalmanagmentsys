@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<style type="text/css">
+form  {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 500px;
+    margin-left: 500px;
+}
+div.title {
+  margin-top: 30px
+
+</style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="title">
+  <center><h1> <span class="badge badge-secondary">Hospital Database</span></h1></center> <br>
+</div>
+<form method="POST" action="/staffpage">
+  <div class="form-group">
+    <label for="exampleInputEmail1">User Name</label>
+    <input type="text" name="data" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username" required="true">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required="true">
+  </div>
+  <button type="submit" class="btn btn-primary">login</button>
+</form>
+  </body>
+</html>

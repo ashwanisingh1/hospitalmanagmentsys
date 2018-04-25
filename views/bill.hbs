@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+
+
+<style type="text/css">
+
+myform{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 200px;
+    margin-left: 200px;
+}
+div.title {
+  margin-top: 30px;
+}
+</style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Bills</title>
+  </head>
+  <body>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">HDM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/staff">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">Log Out</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+    <div class="title">
+
+  <center><h2>Enter Patient Id </h2></center> <br>
+</div>
+<form method="POST" action="/current_bill" id="myform">
+  <div class="form-group">
+    <label for="name">PatientId</label>
+    <input type="text" class="form-control" name="id" id="id"  pattern="[0-9]{8,8}" required="true">
+
+  <button onclick="myFunction()" class="btn btn-primary">Submit</button>
+</form>
+<form method="POST" action="/discharge" id="myform2">
+  <div class="form-group">
+    <input type="hidden" name="dis_id" id="dis_id"/>
+  <button type="submit" onclick="myFunction2()" class="btn btn-primary">Discharge</button>
+</form>
+<script>
+function myFunction2() {
+    var fl="true";
+    document.getElementById("dis_id").value = document.getElementById("id").value;
+    if (document.getElementById("id").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+    if(fl==="true")
+    {
+      document.forms["myform2"].submit();
+    }
+}
+function myFunction() {
+    var fl="true"
+    if (document.getElementById("id").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+    if(fl==="true")
+    {
+      document.forms["myform"].submit();
+    }
+}
+
+</script>
+<br>
+<br>
+<button type="button" class="btn btn-primary">
+  Rows <span class="badge badge-light">{{result.length}}</span>
+  <span class="sr-only">unread messages</span>
+</button>
+
+<table class="table table-dark" id="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Bcode</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <thead>
+{{#ifCond result.length 0}}
+   <th scope="row">No Input</th>
+{{else}}
+  {{#each result}}
+    <tr>
+
+      <th scope="row">{{math @index "+" 1}}</th>
+      <th scope="row">{{this.bcode}}</th>
+      <th scope="row">{{this.price}}</th>
+      <th scope="row">{{this.description}}</th>
+
+    </tr>
+    {{/each}}
+{{/ifCond}}
+  </thead>
+</table>
+  </body>
+</html>

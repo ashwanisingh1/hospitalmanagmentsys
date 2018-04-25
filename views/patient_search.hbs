@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<style type="text/css">
+
+form  {
+    margin-top: 100dpi;
+    margin-bottom: 100dpi;
+    margin-right: 50dpi;
+    margin-left: 50dpi;
+}
+div.title {
+  margin-top: 30dpi
+}
+div.card-title {
+  font-size: 40dpi;
+}
+
+input[type=text] {
+    width: 30dpi;
+    margin-top: 60dpi;
+    margin-left: 90dpi;
+    margin-right: 90dpi;
+
+}
+form  {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 500px;
+    margin-left: 500px;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
+
+
+</style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Login</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <a class="navbar-brand" href="/">HDM</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/staff">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/add_patient">Add Patient</a>
+      </li>
+      <div class="navbar-nav">
+      <a href="/" class="nav-item nav-link"><strong>Logout</strong></a>
+  </div>
+
+    </ul>
+
+  </div>
+
+</nav>
+<br>
+<br>
+<form method="POST" action="/search_patient">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Search Patient</label>
+    <input type="text" name="data" class="form-control" id="search" aria-describedby="emailHelp" placeholder="...">
+
+  </div>
+
+  <button type="submit"  class="btn btn-primary">Search</button>
+  <br>
+
+</form>
+<button type="button" class="btn btn-primary">
+  Rows <span class="badge badge-light">{{result.length}}</span>
+  <span class="sr-only">unread messages</span>
+</button>
+<table class="table table-dark" id="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Room_Id</th>
+      <th scope="col">Aadhar No</th>
+      <th scope="col">Info</th>
+      <th scope="col">Contact No.</th>
+      <th scope="col">Date Admitted</th>
+      <th scope="col">Date Discharged</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Address</th>
+      <th scope="col">Doctor Appointed</th>
+    </tr>
+  </thead>
+  {{#ifCond result.length 0}}
+   <th scope="row">No Input</th>
+{{else}}
+  {{#each result}}
+    <tr>
+
+      <td scope="row">{{math @index "+" 1}}</td>
+      <td scope="row">{{this.pname}}</td>
+      <td scope="row">{{this.room_id}}</td>
+      <td scope="row">{{this.Aadhar_no}}</td>
+      <td scope="row">{{this.info}}</td>
+      <td scope="row">{{this.contact_no}}</td>
+      <td scope="row">{{this.date_adm}}</td>
+      <td scope="row">{{this.date_disch}}</td>
+      <td scope="row">{{this.age}}</td>
+      <td scope="row">{{this.gender}}</td>
+      <td scope="row">{{this.address}}</td>
+      <td scope="row">{{this.name}}</td>
+
+    </tr>
+    {{/each}}
+{{/ifCond}}
+</table>
+
+
+
+  </body>
+
+
+</html>

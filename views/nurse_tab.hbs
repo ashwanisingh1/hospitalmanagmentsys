@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<style type="text/css">
+
+form  {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 600px;
+    margin-left: 600px;
+}
+div.title {
+  margin-top: 30px
+}
+div.card-title {
+  font-size: 40pt;
+}
+
+
+        table, th, td
+        {
+            margin:10px 0;
+            border:solid 1px #333;
+            padding:2px 4px;
+            font:15px Verdana;
+        }
+        th {
+            font-weight:bold;
+        }
+
+
+</style>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Login</title>
+  </head>
+  <body onload="CreateTableFromJSON()">
+
+        <div class="title">
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Nurse Data</h1>
+  </div>
+</div>
+</div>
+
+<table class="table table-dark" id="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Qualification</th>
+      <th scope="col">Contact No.</th>
+      <th scope="col">Experience</th>
+      <th scope="col">Room Appointed</th>
+      <th scope="col">Type</th>
+  </tr>
+  </thead>
+</table>
+<!--
+  <tbody>
+
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+!-->
+
+  <div id="showData"></div>
+
+  </body>
+  <script>
+  function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
+}
+  var json_obj = JSON.parse(Get('/nursedata'));
+var obj = JSON.parse(json_obj);
+
+
+      function CreateTableFromJSON() {
+
+          // EXTRACT VALUE FOR HTML HEADER.
+          // ('Book ID', 'Book Name', 'Category' and 'Price')
+          var col = [];
+          for (var i = 0; i < json_obj.length; i++) {
+              for (var key in json_obj[i]) {
+                  if (col.indexOf(key) === -1) {
+                      col.push(key);
+                  }
+              }
+          }
+
+          // CREATE DYNAMIC TABLE.
+          var table = document.getElementById("table");
+
+          // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+          var tr = table.insertRow(-1);                   // TABLE ROW.
+
+
+
+          // ADD JSON DATA TO THE TABLE AS ROWS.
+          for (var i = 0; i < obj.length; i++) {
+
+              tr = table.insertRow(-1);
+
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = i+1;
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = obj[i].name;
+
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = obj[i].salary;
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = obj[i].qualification;
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = obj[i].contact_no;
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = obj[i].experience;
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = obj[i].room_id;
+
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = obj[i].type;
+
+          }
+
+          // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+          var divContainer = document.getElementById("showData");
+          divContainer.innerHTML = "";
+          divContainer.appendChild(table);
+      }
+
+
+  </script>
+
+
+
+
+</html>

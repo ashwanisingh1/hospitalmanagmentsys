@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+
+
+<style type="text/css">
+
+form  {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 200px;
+    margin-left: 200px;
+}
+div.title {
+  margin-top: 30px;
+}
+</style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Login</title>
+  </head>
+  <body>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">HDM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/staff">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">Log Out</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+    <div class="title">
+
+  <center><h2>New Nurse Registration</h2></center> <br>
+</div>
+<form method="POST" action="/new_nurse" id="myform">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" id="name" aria-describedby="name" pattern="[A-Za-z]{1,10}" required="true">
+
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Employee ID</label>
+    <input type="text" class="form-control" name="eid" id="eid"  pattern="[0-9]{3,3}" required="true">
+
+  </div>
+
+    <div class="form-group">
+    <label for="exampleInputEmail1">Contact No.</label>
+    <input type="text" class="form-control" name="contactno" id="contactno" pattern="[0-9]{10,10}" min="7000000000" max="9999999999" required="true">
+
+
+    <div class="form-group">
+    <label for="exampleInputEmail1">Salary</label>
+    <input type="text" class="form-control" name="salary" id="salary" required="true" pattern="[0-9]{1,7}">
+
+  </div>
+  <div class="form-group">
+  <label for="exampleInputEmail1">Room Allotted</label>
+  <input type="text" class="form-control" name="roomno" id="roomno" required="true" pattern="[0-9]{3,3}">
+
+</div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Qualification</label>
+    <input type="text" class="form-control" name="qualification" id="qualification" required="true" pattern = "[A-Za-z]{1,120}">
+
+  </div>
+  <div class="form-group">
+  <label for="exampleInputEmail1">Experience</label>
+  <input type="text" class="form-control" name="experience" id="experience" required="true" pattern = "[0-9]{1,100}">
+
+</div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Type</label>
+    <input type="text" class="form-control" name="type" id="type" required="true" aria-describedby="emailHelp">
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+
+
+
+  <button onclick="myFunction()" class="btn btn-primary">Add Nurse</button>
+</form>
+
+<script>
+function myFunction() {
+    var fl="true"
+    if (document.getElementById("name").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+
+        if (document.getElementById("contactno").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+
+        if (document.getElementById("salary").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+
+    if (document.getElementById("experience").validity.rangeUnderflow) {
+   txt = "Value too small";
+   fl="false"
+}
+        if (document.getElementById("roomno").validity.rangeUnderflow) {
+       txt = "Value too small";
+
+       fl="false"
+    }
+
+        if (document.getElementById("qualification").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+    if (document.getElementById("type").validity.rangeUnderflow) {
+   txt = "Value too small";
+   fl="false"
+    }
+    if (document.getElementById("eid").validity.rangeUnderflow) {
+    txt = "Value too small";
+    fl="false"
+    }
+    if(fl==="true")
+    {
+      document.forms["myform"].submit();
+    }
+}
+</script>
+  </body>
+</html>

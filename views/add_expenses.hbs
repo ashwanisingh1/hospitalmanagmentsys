@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+
+
+<style type="text/css">
+
+form  {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 200px;
+    margin-left: 200px;
+}
+div.title {
+  margin-top: 30px;
+}
+</style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Expenses</title>
+  </head>
+  <body>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">HDM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/staff">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">Log Out</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+    <div class="title">
+
+  <center><h2>Add Expenses</h2></center> <br>
+</div>
+<form method="POST" action="/add_expense" id="myform">
+  <div class="form-group">
+    <label for="name">Bcode</label>
+    <input type="text" class="form-control" name="bcode" id="bcode"  pattern="[0-9]{3,3}" required="true">
+
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Price</label>
+    <input type="text" class="form-control" name="price" id="price"  pattern="[0-9]{1,5}" required="true">
+
+  </div>
+
+    <div class="form-group">
+    <label for="exampleInputEmail1">Description</label>
+    <input type="text" class="form-control" name="description" id="description" pattern="[A-Za-z]{1,200}" required="true">
+
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Patient ID</label>
+    <input type="text" class="form-control" name="patientid" id="patientid" required="true" pattern="[0-9]{8,8}">
+
+
+  <button onclick="myFunction()" class="btn btn-primary">Add Equipment</button>
+</form>
+
+<script>
+function myFunction() {
+    var fl="true"
+    if (document.getElementById("bcode").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+    if (document.getElementById("price").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+
+        if (document.getElementById("description").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+
+        if (document.getElementById("patientid").validity.rangeUnderflow) {
+       txt = "Value too small";
+       fl="false"
+    }
+    if(fl==="true")
+    {
+      document.forms["myform"].submit();
+    }
+}
+</script>
+  </body>
+</html>
